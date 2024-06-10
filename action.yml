@@ -13,7 +13,7 @@ inputs:
     default: 'build'
 runs:
   using: 'docker'
-  image: 'ghcr.io/bestsens/nrf-connect-sdk-ci:v2.6.1'
+  image: 'docker://ghcr.io/bestsens/nrf-connect-sdk-ci:v2.6.1'
   args:
     - west 
     - build
