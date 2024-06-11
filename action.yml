@@ -15,6 +15,12 @@ inputs:
     description: 'Additional flags'
     required: true
     default: '--no-sysbuild'
+  mcuboot_conf_file:
+    description: 'MCUboot configuration file'
+    required: true
+  conf_file:
+    description: 'Configuration file'
+    required: true
 runs:
   using: 'docker'
   image: 'docker://sergeyladanov/nrf-connect-sdk:v3.0.2'
@@ -28,4 +34,5 @@ runs:
     - --board 
     - ${{ inputs.board }}
     - ${{ inputs.add_flags }}
-    
+    - -Dmcuboot_CONF_FILE=${{ inputs.mcuboot_conf_file }}
+    - -DCONF_FILE=${{ inputs.conf_file }}
