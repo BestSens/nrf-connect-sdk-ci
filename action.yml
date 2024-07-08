@@ -2,7 +2,7 @@ name: 'NRF Connect SDK CI action'
 description: 'Building nrf connect sdk projects'
 branding:
   color: blue
-  icon: Link
+  icon: link
 inputs:
   board:  # id of input
     description: 'Board for build'
@@ -19,7 +19,7 @@ inputs:
     required: true
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/bestsens/nrf-connect-sdk-ci:v2.6.1'
+  image: 'docker://ghcr.io/bestsens/nrf-connect-sdk-ci:v2.7.0'
   args:
     - west 
     - build
