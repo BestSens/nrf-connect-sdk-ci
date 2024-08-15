@@ -11,24 +11,22 @@ inputs:
     description: 'Building directory'
     required: true
     default: 'build'
-  mcuboot_conf_file:
-    description: 'MCUboot configuration file'
+  board_root:
+    description: 'Root Directory where the boards can be found'
     required: true
-  conf_file:
-    description: 'Configuration file'
+  file_suffix:
+    description: 'Configuration file suffix'
     required: true
+    default: 'release'
 runs:
   using: 'docker'
   image: 'docker://ghcr.io/bestsens/nrf-connect-sdk-ci:v2.7.0'
   args:
-    - west 
-    - build
-    - --build-dir 
-    - ${{ inputs.build_dir }}
+    - sh 
+    - ./build.sh
     - .
-    - --pristine
-    - --no-sysbuild
-    - --board 
     - ${{ inputs.board }}
-    - -Dmcuboot_CONF_FILE=${{ inputs.mcuboot_conf_file }}
-    - -DCONF_FILE=${{ inputs.conf_file }}
+    - ${{ inputs.build_dir }}
+    - ${{ inputs.board_root }}
+    - ${{ inputs.file_suffix }}
+    
