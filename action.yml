@@ -17,18 +17,19 @@ inputs:
     default: '--no-sysbuild'
   mcuboot_conf_file:
     description: 'MCUboot configuration file'
+  board_root:
+    description: 'Root Directory where the boards can be found'
     required: true
-  conf_file:
-    description: 'Configuration file'
+  file_suffix:
+    description: 'Configuration file suffix'
     required: true
+    default: 'release'
 runs:
   using: 'docker'
   image: 'docker://sergeyladanov/nrf-connect-sdk:v3.0.2'
   args:
-    - west 
-    - build
-    - --build-dir 
-    - ${{ inputs.build_dir }}
+    - sh 
+    - ./build.sh
     - .
     - --pristine
     - --board 
@@ -36,3 +37,7 @@ runs:
     - ${{ inputs.add_flags }}
     - -Dmcuboot_CONF_FILE=${{ inputs.mcuboot_conf_file }}
     - -DCONF_FILE=${{ inputs.conf_file }}
+    - ${{ inputs.build_dir }}
+    - ${{ inputs.board_root }}
+    - ${{ inputs.file_suffix }}
+    
