@@ -9,14 +9,15 @@ inputs:
     required: true
   build_dir:
     description: 'Building directory'
-    required: true
+    required: false
     default: 'build'
   board_root:
     description: 'Root Directory where the boards can be found'
-    required: true
+    required: false
+    default: '.'
   file_suffix:
     description: 'Configuration file suffix'
-    required: true
+    required: false
     default: 'release'
 runs:
   using: 'docker'
