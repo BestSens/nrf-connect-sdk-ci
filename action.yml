@@ -19,6 +19,10 @@ inputs:
     description: 'MCUboot configuration file'
   board_root:
     description: 'Root Directory where the boards can be found'
+  workspace_dir:
+    description: 'Name of the workspace directory where the project-builds will be placed'
+    required: false
+    default: 'workspace'
   project_root:
     description: 'Root Directory where the project files are located'
     required: false
@@ -43,4 +47,5 @@ runs:
     - -DCONF_FILE=${{ inputs.conf_file }}
     - ${{ inputs.build_dir }}
     - ${{ inputs.file_suffix }}
+    - ${{ inputs.workspace_dir }}
     - /workdir/ncs
