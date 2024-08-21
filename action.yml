@@ -30,4 +30,5 @@ runs:
     - ${{ inputs.build_dir }}
     - ${{ inputs.board_root }}
     - ${{ inputs.file_suffix }}
+    - /workdir/ncs
     
