@@ -19,8 +19,10 @@ inputs:
     description: 'MCUboot configuration file'
   board_root:
     description: 'Root Directory where the boards can be found'
+  project_root:
+    description: 'Root Directory where the project files are located'
     required: false
-    default: '.'
+    default: '/github/workspace'
   file_suffix:
     description: 'Configuration file suffix'
     required: false
@@ -34,11 +36,11 @@ runs:
     - .
     - --pristine
     - --board 
+    - ${{ inputs.project_root }}
     - ${{ inputs.board }}
     - ${{ inputs.add_flags }}
     - -Dmcuboot_CONF_FILE=${{ inputs.mcuboot_conf_file }}
     - -DCONF_FILE=${{ inputs.conf_file }}
     - ${{ inputs.build_dir }}
-    - ${{ inputs.board_root }}
     - ${{ inputs.file_suffix }}
     - /workdir/ncs
