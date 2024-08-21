@@ -11,6 +11,10 @@ inputs:
     description: 'Building directory'
     required: false
     default: 'build'
+  workspace_dir:
+    description: 'Name of the workspace directory where the project-builds will be placed'
+    required: false
+    default: 'workspace'
   project_root:
     description: 'Root Directory where the project files are located'
     required: false
@@ -29,5 +33,6 @@ runs:
     - ${{ inputs.board }}
     - ${{ inputs.build_dir }}
     - ${{ inputs.file_suffix }}
+    - ${{ inputs.workspace_dir }}
     - /workdir/ncs
     
