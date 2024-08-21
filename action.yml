@@ -11,10 +11,10 @@ inputs:
     description: 'Building directory'
     required: false
     default: 'build'
-  board_root:
-    description: 'Root Directory where the boards can be found'
+  project_root:
+    description: 'Root Directory where the project files are located'
     required: false
-    default: '.'
+    default: '/github/workspace'
   file_suffix:
     description: 'Configuration file suffix'
     required: false
@@ -25,10 +25,9 @@ runs:
   args:
     - sh 
     - ./build.sh
-    - .
+    - ${{ inputs.project_root }}
     - ${{ inputs.board }}
     - ${{ inputs.build_dir }}
-    - ${{ inputs.board_root }}
     - ${{ inputs.file_suffix }}
     - /workdir/ncs
     
