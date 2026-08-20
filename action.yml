@@ -33,7 +33,7 @@ inputs:
     default: 'release'
 runs:
   using: 'docker'
-  image: 'docker://sergeyladanov/nrf-connect-sdk:v3.0.2'
+  image: 'docker://sergeyladanov/nrf-connect-sdk:v3.4.0'
   args:
     - sh 
     - ./build.sh
