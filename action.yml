@@ -11,14 +11,6 @@ inputs:
     description: 'Building directory'
     required: false
     default: 'build'
-  add_flags:
-    description: 'Additional flags'
-    required: true
-    default: '--no-sysbuild'
-  mcuboot_conf_file:
-    description: 'MCUboot configuration file'
-  board_root:
-    description: 'Root Directory where the boards can be found'
   workspace_dir:
     description: 'Name of the workspace directory where the project-builds will be placed'
     required: false
@@ -35,16 +27,12 @@ runs:
   using: 'docker'
   image: 'docker://ghcr.io/metax-sensors/nrf-connect-sdk-ci:v3.4.0'
   args:
-    - sh 
+    # build.sh takes 6 positional arguments, in this exact order:
+    #   PROJECT_PATH BOARD BUILD_DIR FILE_SUFFIX WORKSPACE_DIR NCS_PATH
+    - sh
     - ./build.sh
-    - .
-    - --pristine
-    - --board 
     - ${{ inputs.project_root }}
     - ${{ inputs.board }}
-    - ${{ inputs.add_flags }}
-    - -Dmcuboot_CONF_FILE=${{ inputs.mcuboot_conf_file }}
-    - -DCONF_FILE=${{ inputs.conf_file }}
     - ${{ inputs.build_dir }}
     - ${{ inputs.file_suffix }}
     - ${{ inputs.workspace_dir }}
